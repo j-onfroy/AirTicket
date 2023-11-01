@@ -1,0 +1,48 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1 {
+    color: #3498db;
+}
+
+.confirm-button, .back-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.confirm-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.confirm-button:hover {
+    background-color: #2577a8;
+}
+
+.back-button {
+    background-color: red;
+    color: #fff;
+}
+
+.back-button:hover {
+    background-color: darkred;
+}

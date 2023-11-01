@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: none;
+            color: #333;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control {
+            background-color: #f9f9f9;
+            border-color: #ccc;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            border-color: #3498db;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/api/v1/auth/verification}" method="post">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card p-4">
+            <h2 class="text-center">Enter 6-Digit Verification Code</h2>
+            <div class="form-group">
+                <input type="text" name="enterCode" class="form-control text-center" maxlength="6" placeholder="123456">
+                <input type="hidden" name="userId" th:value="${userId}">
+            </div>
+            <div th:if="${error}" class="alert alert-danger text-center" style="background-color: #fff; color: #ff0000;">
+                <p th:text="${error}"></p>
+            </div>
+            <button class="btn btn-primary btn-block">Submit</button>
+            <br>
+            <br>
+            <div>
+                <a href="/login">Back</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

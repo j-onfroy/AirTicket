@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin and User Roles</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .role-link {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .role-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<h1>Choose Role</h1>
+<a th:href="@{/api/v1/admin}" class="role-link">Admin</a>
+<a th:href="@{/api/v1/profile}" class="role-link">User</a>
+</body>
+</html>

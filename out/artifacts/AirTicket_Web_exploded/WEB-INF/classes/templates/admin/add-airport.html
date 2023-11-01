@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Airport</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Airport</h1>
+<div class="form-container">
+    <form th:action="@{/api/v1/admin/add-airport}" method="post">
+        <label for="airportName">Enter Airport name:</label>
+        <input type="text" id="airportName" name="name" required>
+        <br>
+        <br>
+        <label for="airportLocation">Airport Location (Country):</label>
+        <select id="airportLocation" name="country" required>
+            <option value="">Select Country</option>
+            <option value="Uzbekistan">Uzbekistan</option>
+            <option value="United States">United States</option>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="Germany">Germany</option>
+            <option value="India">India</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="France">France</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Italy">Italy</option>
+            <option value="Canada">Canada</option>
+            <option value="South Korea">South Korea</option>
+            <option value="Russia">Russia</option>
+            <option value="Australia">Australia</option>
+            <option value="Spain">Spain</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Turkey">Turkey</option>
+        </select>
+        <br>
+        <br>
+        <label for="cityLocation">City:</label>
+        <select id="cityLocation" name="city" required>
+            <option value="">Select City</option>
+        </select>
+        <br>
+        <br>
+        <button type="submit">Add Airport</button>
+    </form>
+</div>
+<br>
+<a th:href="@{/api/v1/admin}">Back</a>
+<a th:href="@{/api/v1/admin/airport-list}">Airport List</a>
+<script>
+    $(document).ready(function() {
+        $('#airportLocation').select2({
+            placeholder: 'Select Country',
+            allowClear: true,
+            width: '100%'
+        });
+
+        $('#cityLocation').select2({
+            placeholder: 'Select City',
+            allowClear: true,
+            width: '100%'
+        });
+
+        // Define city options based on the selected country
+        var countryCities = {
+            'Uzbekistan': ['Tashkent', 'Samarkand', 'Bukhara', 'Andijan', 'Nukus'],
+            'United States': ['New York', 'Los Angeles', 'Chicago', 'Miami', 'San Francisco'],
+            'China': ['Beijing', 'Shanghai', 'Guangzhou', 'Xi\'an', 'Chengdu'],
+            'Japan': ['Tokyo', 'Osaka', 'Kyoto', 'Nagoya', 'Sapporo'],
+            'Germany': ['Berlin', 'Munich', 'Hamburg', 'Cologne', 'Frankfurt'],
+            'India': ['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata'],
+            'United Kingdom': ['London', 'Manchester', 'Birmingham', 'Glasgow', 'Liverpool'],
+            'France': ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice'],
+            'Brazil': ['Sao Paulo', 'Rio de Janeiro', 'Brasilia', 'Salvador', 'Fortaleza'],
+            'Italy': ['Rome', 'Milan', 'Naples', 'Florence', 'Venice'],
+            'Canada': ['Toronto', 'Vancouver', 'Montreal', 'Calgary', 'Ottawa'],
+            'South Korea': ['Seoul', 'Busan', 'Incheon', 'Daegu', 'Daejeon'],
+            'Russia': ['Moscow', 'Saint Petersburg', 'Novosibirsk', 'Yekaterinburg', 'Kazan'],
+            'Australia': ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide'],
+            'Spain': ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Bilbao'],
+            'Mexico': ['Mexico City', 'Guadalajara', 'Monterrey', 'Puebla', 'Tijuana'],
+            'Indonesia': ['Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Makassar'],
+            'Netherlands': ['Amsterdam', 'Rotterdam', 'Utrecht', 'The Hague', 'Eindhoven'],
+            'Saudi Arabia': ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam'],
+            'Switzerland': ['Zurich', 'Geneva', 'Bern', 'Lucerne', 'Lausanne'],
+            'Turkey': ['Istanbul', 'Ankara', 'Izmir', 'Bursa', 'Antalya']
+        };
+
+        $('#airportLocation').on('change', function() {
+            var selectedCountry = $(this).val();
+            var citySelect = $('#cityLocation');
+            citySelect.empty();
+
+            if (selectedCountry in countryCities) {
+                var cities = countryCities[selectedCountry];
+                for (var i = 0; i < cities.length; i++) {
+                    citySelect.append('<option value="' + cities[i] + '">' + cities[i] + '</option>');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

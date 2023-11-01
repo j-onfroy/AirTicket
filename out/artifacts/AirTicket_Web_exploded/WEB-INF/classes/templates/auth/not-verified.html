@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Email Confirmation Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #3498db;
+      font-size: 24px;
+    }
+
+    h4 {
+      color: #333;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #2577a8;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: #3498db;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Email Confirmation</h1>
+  <h4>Your email is not verified. Please verify it by clicking the button below:</h4>
+
+  <!-- Button for Email Confirmation -->
+  <form action="/api/v1/auth/verification" method="get">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <button type="submit">Send Verification Code</button>
+  </form>
+  <a href="/login">Back to Login</a>
+</div>
+</body>
+</html>

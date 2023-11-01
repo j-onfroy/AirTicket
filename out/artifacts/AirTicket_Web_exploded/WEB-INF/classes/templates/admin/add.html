@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .role-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .role-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Choose</h1>
+<a th:href="@{/api/v1/admin/add-airport}" class="role-link">Add Airport</a>
+<a th:href="@{/api/v1/admin/add-flight}" class="role-link">Add Ticket</a>
+<a th:href="@{/api/v1/cabinet}" class="back-button">Back</a>
+</body>
+</html>

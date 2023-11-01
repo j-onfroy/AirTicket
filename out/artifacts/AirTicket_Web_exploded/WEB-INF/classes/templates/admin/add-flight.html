@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Flight Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 200px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        label, select, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        // JavaScript function to prevent selecting the same airport in both fields
+        function checkAirportSelection() {
+            var fromAirport = document.getElementById("fromAirportId").value;
+            var toAirport = document.getElementById("toAirportId").value;
+
+            if (fromAirport === toAirport) {
+                alert("Please select different airports for 'From' and 'To'.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<h1>Enter Flight Information</h1>
+<div class="form-container">
+    <form th:action="@{/api/v1/admin/add-flight}" method="post" onsubmit="return checkAirportSelection()">
+        <label for="flightTime">Flight Time (HH:MM):</label>
+        <input type="time" id="flightTime" name="flightTime" required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"><br>
+
+        <label for="flightDate">Flight Date:</label>
+        <input type="date" id="flightDate" name="flightDate" required><br>
+
+        <label for="countOfSeats">Count of Seats:</label>
+        <select id="countOfSeats" name="countOfSeats" required>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="70">70</option>
+            <option value="100">70</option>
+            <option value="120">70</option>
+        </select><br>
+
+        <label for="fromAirportId">From Airport:</label>
+        <select id="fromAirportId" name="fromAirportId" required>
+            <option th:each="airport : ${airports}" th:value="${airport}" th:text="${airport}">Airport Name</option>
+        </select><br>
+
+        <label for="toAirportId">To Airport:</label>
+        <select id="toAirportId" name="toAirportId" required>
+            <option th:each="airport : ${airports}" th:value="${airport}" th:text="${airport}">Airport Name</option>
+        </select><br>
+
+        <button type="submit" class="submit-button" style="navbutton_background_color: #007bff">Submit</button>
+    </form>
+    <br>
+    <a th:href="@{/api/v1/admin/flight-list}">Flight List</a>
+    <br>
+    <a th:href="@{/api/v1/admin}">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Air Ticket Seller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3498db; /* Blue background color */
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav ul {
+            background-color: #333;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form label, table th {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #3498db; /* Blue button color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        section {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        aside {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to Air Ticket Seller</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Search Flights</a></li>
+        <li><a href="#">Manage Reservations</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Search Flights</h2>
+    <form th:action="@{/search}" method="post">
+        <label for="departure">Departure:</label>
+        <input type="text" name="departure" id="departure" required>
+
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" id="destination" required>
+
+        <label for="departure-date">Departure Date:</label>
+        <input type="date" name="departure-date" id="departure-date" required>
+
+        <button type="submit">Search Flights</button>
+    </form>
+</main>
+
+<section>
+    <h2>Available Flights</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Flight Number</th>
+            <th>Departure</th>
+            <th>Destination</th>
+            <th>Departure Date</th>
+            <th>Price</th>
+            <th>Book</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Populate this table with flight data dynamically from your backend -->
+        <tr>
+            <td>Flight123</td>
+            <td>New York</td>
+            <td>Los Angeles</td>
+            <td>2023-10-20</td>
+            <td>$300</td>
+            <td><button>Book</button></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<aside>
+    <h2>Manage Reservations</h2>
+    <p>If you have an existing reservation, you can manage it here.</p>
+    <a href="/manage-reservations">Manage Reservations</a>
+</aside>
+
+<footer>
+    <p>&copy; 2023 Air Ticket Seller</p>
+</footer>
+</body>
+</html>
